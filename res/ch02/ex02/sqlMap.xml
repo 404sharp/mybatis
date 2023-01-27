@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC './/mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<!-- namespace에 지정된 매퍼 객체와 관계를 맺는다. -->
+<mapper namespace='ch02.ex02.Map'>
+	<!-- resultMap은 OR mapping 규칙. 아래 참조 -->
+	<select id='selectUser' resultMap='userMap'>
+		select user_id, user_name, reg_date
+		from users
+		<!-- 가독성을 위해 #{}안의 이름은 이미 있는 것으로 붙인다. -->
+		where user_id = #{userId}
+	</select>
+	
+	<select id='selectUser2' resultMap='userMap'>
+		select user_id, user_name, reg_date
+		from users
+		where user_name = #{userName}
+	</select>
+	
+	<select id='selectUser3' resultMap='userMap'>
+		select user_id, user_name, reg_date
+		from users
+		where reg_date = #{regDate}
+	</select>
+	
+	<!-- 문서 내에서 유일한 이름을 아무거나 붙인다. -->
+	<!-- 이름이 있으므로 재활용된다. -->
+	<resultMap id='userMap' type='user'>
+		<!-- mapping 규칙을 기술한다. -->
+		<id property='userId' column='user_id'/>
+		<result property='userName' column='user_name'/>
+		<result property='regDate' column='reg_date'/>
+	</resultMap>
+</mapper>

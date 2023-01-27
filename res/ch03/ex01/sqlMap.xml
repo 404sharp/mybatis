@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC './/mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<!-- namespace에 지정된 mapper 객체와 관계를 맺는다. -->
+<mapper namespace='ch03.ex01.Map'>
+	<!-- 과제: selectUsers statement를 기술하라.
+	     resultMap을 사용한다. address는 무시한다. -->
+	<select id='selectUsers' resultMap='userMap'>
+		select user_id, user_name, reg_date
+		from users
+		order by user_id
+	</select>
+	
+	<select id='selectAddress' resultType='address'>
+		select address
+		from addresses
+		where user_id = #{userId}
+	</select>
+	
+	<!-- myUser는 User.java에 직접 지정되어 있다. -->
+	<resultMap id='userMap' type='myUser'>
+		<!-- PK는 id를 써준다. -->
+		<id property='userId' column='user_id'/>
+		<result property='userName' column='user_name'/>
+		<result property='regDate' column='reg_date'/>
+		<!-- "has one"을 나타내는 태그 -->
+		<!-- select로 호출한다. -->
+		<!-- column값을 select값의 파라미터로 쓴다. 위의 #{userId}에 들어간다. -->
+		<association property='address' select='selectAddress' column='user_id'/>
+	</resultMap>
+</mapper>

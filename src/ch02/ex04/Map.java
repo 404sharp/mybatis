@@ -1,10 +1,8 @@
-package ch02.ex01;
-
-import java.util.List;
+package ch02.ex04;
 
 import ch02.domain.User;
 
 // mapper interface
 public interface Map {
-	List<User> selectUsers();
+	int updateUser(User user);
 }

@@ -6,6 +6,7 @@
 	<!-- 'user'는 sqlMapConfig에서 typeAlias로 지정된 것이다. -->
 	<!-- mapping이 완료된 user 객체가 중요하다. -->
 	<select id='selectUsers' resultType='user'>
+		<!-- selectUsers 메서드가 call될 때 작동하는 statement -->
 		<!-- 멤버 변수명과 컬럼명을 일치시킨다. User 레코드 소스 참조. -->
 		select user_id userId, user_name userName, reg_date regDate
 		from users

@@ -24,12 +24,13 @@ public class Main {
 			String query = "select user_id, user_name, reg_date from users";
 			// String을 statement로 바꾼다.
 			stmt = conn.prepareStatement(query);
-			// relation이 준비된다.
+			// response로 relation이 온다.
 			rs = stmt.executeQuery();
 			
 			// ORM에 쓸 변수를 만든다.
 			User user = null;
-			// 커서가 valid row 밖으로 이동하면 false
+			// 커서를 이동시킨다.
+			// 커서가 row 밖으로 이동하면(데이터가 없으면) false
 			while(rs.next()) {
 				// getInt는 number 타입. 1은 컬럼 번호.
 				// getString은 varchar2 타입. 2는 컬럼 번호.

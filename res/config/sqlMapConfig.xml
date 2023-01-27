@@ -8,6 +8,9 @@
 	
 	<typeAliases>
 		<typeAlias type='ch02.domain.User' alias='user'/>
+		<!-- 별명을 자동으로 붙여주자. -->
+		<!-- 각 2개 생성된다. 대문자로 시작하는 것과 소문자로 시작하는 것. -->
+		<package name='ch03.domain'/>
 	</typeAliases>
 	
 	<environments default='development'>
@@ -29,5 +32,10 @@
 	
 	<mappers>
 		<mapper resource='ch02/ex01/sqlMap.xml'/>
+		<mapper resource='ch02/ex02/sqlMap.xml'/>
+		<mapper resource='ch02/ex03/sqlMap.xml'/>
+		<mapper resource='ch02/ex04/sqlMap.xml'/>
+		<mapper resource='ch02/ex05/sqlMap.xml'/>
+		<mapper resource='ch03/ex01/sqlMap.xml'/>
 	</mappers>
 </configuration>

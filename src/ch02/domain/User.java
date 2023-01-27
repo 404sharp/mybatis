@@ -8,6 +8,12 @@ public class User {
 	private String userName;
 	private LocalDate regDate;
 	
+	public User(int userId, String userName, LocalDate regDate) {
+		this.userId = userId;
+		this.userName = userName;
+		this.regDate = regDate;
+	}
+	
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
