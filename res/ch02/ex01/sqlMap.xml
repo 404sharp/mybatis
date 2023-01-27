@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC './/mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<!-- 이 이름(ch02.ex01.Map)을 가진 mapper 객체와 관계를 맺는다. -->
+<mapper namespace='ch02.ex01.Map'>
+	<!-- 'user'는 sqlMapConfig에서 typeAlias로 지정된 것이다. -->
+	<!-- mapping이 완료된 user 객체가 중요하다. -->
+	<select id='selectUsers' resultType='user'>
+		<!-- 멤버 변수명과 컬럼명을 일치시킨다. User 레코드 소스 참조. -->
+		select user_id userId, user_name userName, reg_date regDate
+		from users
+		order by user_id
+	</select>
+</mapper>
