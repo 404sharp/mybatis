@@ -14,7 +14,7 @@
 		<environment id='development'>
 			<transactionManager type='JDBC'/>
 			<!-- dataSource: 연결(connection) -->
-			<!-- pooled: 미리 connection을 N개 만들어둔다. -->
+			<!-- POOLED: 미리 connection을 N개 만들어 둔다. -->
 			<dataSource type='POOLED'>
 				<!-- $를 붙여서 위의 driver 속성인 oracle.jdbc.driver...를 표현 -->
 				<!-- expression language (EL) -->
