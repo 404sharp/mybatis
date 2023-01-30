@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<!-- namespace에 지정된 mapper 객체와 관계를 맺는다. -->
+<mapper namespace='ch05.ex07.Map'>
+	<select id='selectUsers' resultMap='userMap'>
+		<!-- 이 위치에 sql snippet을 복사 -->
+		<include refid='selectUser'/>
+		where user_id in
+			<!-- 그 배열 -->
+			<foreach item='userId' collection='array' open='(' separator=',' close=')'>
+				#{userId}
+			</foreach>
+	</select>
+	
+	<select id='selectUsers2' resultMap='userMap'>
+		<!-- 이 위치에 sql snippet을 복사 -->
+		<include refid='selectUser'/>
+		where user_name in
+			<!-- 그 list -->
+			<foreach item='userName' collection='list' open='(' separator=',' close=')'>
+				#{userName}
+			</foreach>
+	</select>
+	
+	<resultMap id='userMap' type='ch05.domain.User'>
+		<id property='userId' column='user_id'/>
+		<result property='userName' column='user_name'/>
+		<result property='regDate' column='reg_date'/>
+	</resultMap>
+	
+	<!-- sql snippet -->
+	<sql id='selectUser'>
+		select user_id, user_name, reg_date
+		<!-- <sql>에서 parameter는 $ -->
+		from users
+	</sql>
+</mapper>

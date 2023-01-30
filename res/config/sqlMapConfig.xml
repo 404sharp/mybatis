@@ -30,6 +30,7 @@
 		</environment>
 	</environments>
 	
+	<!-- mapper pool -->
 	<mappers>
 		<mapper resource='ch02/ex01/sqlMap.xml'/>
 		<mapper resource='ch02/ex02/sqlMap.xml'/>
@@ -37,5 +38,15 @@
 		<mapper resource='ch02/ex04/sqlMap.xml'/>
 		<mapper resource='ch02/ex05/sqlMap.xml'/>
 		<mapper resource='ch03/ex01/sqlMap.xml'/>
+		<mapper resource='ch03/ex02/sqlMap.xml'/>
+		<mapper resource='ch04/ex01/sqlMap.xml'/>
+		<mapper resource='ch04/ex02/sqlMap.xml'/>
+		<mapper resource='ch05/ex01/sqlMap.xml'/>
+		<mapper resource='ch05/ex02/sqlMap.xml'/>
+		<mapper resource='ch05/ex03/sqlMap.xml'/>
+		<mapper resource='ch05/ex04/sqlMap.xml'/>
+		<mapper resource='ch05/ex05/sqlMap.xml'/>
+		<mapper resource='ch05/ex06/sqlMap.xml'/>
+		<mapper resource='ch05/ex07/sqlMap.xml'/>
 	</mappers>
 </configuration>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<!-- namespace에 지정된 mapper 객체와 관계를 맺는다. -->
+<mapper namespace='ch05.ex03.Map'>
+	<select id='selectUsers' resultMap='userMap'>
+		select users.user_id, user_name, reg_date, post_title, post_content
+		from users join posts
+		on users.user_id = posts.user_id
+		<!-- if들 중 하나 이상이 true가 되면 where절이 포함된다. -->
+		<where>
+			<if test='userName != null'>
+				user_name = #{userName}
+			</if>
+			<if test='post != null and post.title != null'>
+				and post_title like '%' || #{post.title} || '%'
+			</if>
+			<if test='post != null and post.content != null'>
+				and post_content like '%' || #{post.content} || '%'
+			</if>
+		</where>
+	</select>
+
+	<resultMap id='userMap' type='ch05.domain.User'>
+		<id property='userId' column='user_id'/>
+		<result property='userName' column='user_name'/>
+		<result property='regDate' column='reg_date'/>
+		<collection property='posts' ofType='ch05.domain.Post' columnPrefix='post_'>
+			<!-- column에서 columnPrefix인 post_가 자동으로 붙는다. -->
+			<result property='title' column='title'/>
+			<result property='content' column='content'/>
+		</collection>
+	</resultMap>
+</mapper>

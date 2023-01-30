@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
-<!-- namespace에 지정된 매퍼 객체와 관계를 맺는다. -->
+<!-- namespace에 지정된 mapper 객체와 관계를 맺는다. -->
 <mapper namespace='ch02.ex02.Map'>
 	<!-- resultMap은 OR mapping 규칙. 아래 참조 -->
 	<select id='selectUser' resultMap='userMap'>
@@ -27,6 +27,7 @@
 	<!-- 이름이 있으므로 재활용된다. -->
 	<resultMap id='userMap' type='user'>
 		<!-- mapping 규칙을 기술한다. -->
+		<!-- id는 PK -->
 		<id property='userId' column='user_id'/>
 		<result property='userName' column='user_name'/>
 		<result property='regDate' column='reg_date'/>

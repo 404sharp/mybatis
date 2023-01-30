@@ -26,7 +26,8 @@ public class Configuration {
 	
 	// mapper pool을 만든다. 매퍼들은 데이터 타입으로 구분된다.
 	public static <T> T getMapper(Class<T> arg) {
-		// true는 auto-commit; batch 작업을 할 때에는 false로 설정
+		// true는 auto-commit (OLTP); batch 작업을 할 때에는 false로 설정
+		// OLTP (OnLine Transaction Processing) 건 단위로 트랜잭션을 처리
 		// mapper pool에서 arg 데이터 타입을 갖고 있는 mapper만 골라낸다.
 		// jdbc에서 connection이라 불렀던 것을 mybatis에서는 session이라 부른다.
 		return sqlSessionFactory.openSession(true).getMapper(arg);

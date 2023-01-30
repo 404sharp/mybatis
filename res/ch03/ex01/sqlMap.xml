@@ -5,12 +5,14 @@
 <mapper namespace='ch03.ex01.Map'>
 	<!-- 과제: selectUsers statement를 기술하라.
 	     resultMap을 사용한다. address는 무시한다. -->
+	<!-- relation이 2개 있다. 이쪽이 더 객체지향적이다. 효율은 낮다. (query를 2번 보냄) -->
 	<select id='selectUsers' resultMap='userMap'>
 		select user_id, user_name, reg_date
 		from users
 		order by user_id
 	</select>
 	
+	<!-- resultType은 ch03.domain.Address이지만 별칭이 sqlMapConfig에 지정되어 있다. -->
 	<select id='selectAddress' resultType='address'>
 		select address
 		from addresses
@@ -24,7 +26,7 @@
 		<result property='userName' column='user_name'/>
 		<result property='regDate' column='reg_date'/>
 		<!-- "has one"을 나타내는 태그 -->
-		<!-- select로 호출한다. -->
+		<!-- select로 selectAddress를 호출한다. -->
 		<!-- column값을 select값의 파라미터로 쓴다. 위의 #{userId}에 들어간다. -->
 		<association property='address' select='selectAddress' column='user_id'/>
 	</resultMap>

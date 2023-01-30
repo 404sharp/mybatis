@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <!-- namespace에 지정된 mapper 객체와 관계를 맺는다. -->
-<mapper namespace='ch02.ex04.Map'>
+<mapper namespace='ch05.ex04.Map'>
 	<update id='updateUser'>
 		update users
-		<!-- User 도메인의 멤버 변수명과 일치해야 한다. -->
-		set user_name = #{userName}, reg_date = #{regDate}
+		<set>
+			<if test='userName != null'>user_name = #{userName}</if>
+			<if test='regDate != null'>reg_date = #{regDate}</if>
+		</set>
 		where user_id = #{userId}
 	</update>
 </mapper>

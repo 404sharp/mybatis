@@ -1,12 +1,14 @@
-package ch02.domain;
+package ch04.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 
-// jdbc가 아니라 mybatis니까 LocalDate를 쓸 수 있다.
 public class User {
 	private int userId;
 	private String userName;
 	private LocalDate regDate;
+	// user "has many" posts
+	private List<Post> posts;
 	
 	public User(int userId, String userName, LocalDate regDate) {
 		this.userId = userId;
@@ -16,6 +18,6 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return String.format("%d %s %s", userId, userName, regDate);
+		return String.format("%d %s %s %s", userId, userName, regDate, posts);
 	}
 }

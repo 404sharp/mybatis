@@ -3,10 +3,24 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <!-- namespace에 지정된 mapper 객체와 관계를 맺는다. -->
 <mapper namespace='ch03.ex02.Map'>
+	<!-- relation이 하나 있다. -->
 	<select id='selectUsers' resultMap='userMap'>
 		select users.user_id, user_name, reg_date, address
 		from users join addresses
 		on users.user_id = addresses.user_id
 		order by user_id
 	</select>
+	
+	<resultMap id='userMap' type='myUser'>
+		<id property='userId' column='user_id'/>
+		<result property='userName' column='user_name'/>
+		<result property='regDate' column='reg_date'/>
+		<!-- addressMap을 통해 만들어진 address object를 address property의 value로 쓴다 -->
+		<association property='address' resultMap='addressMap'/>
+	</resultMap>
+	
+	<!-- type은 ch03.domain.Address인데 별칭이 sqlMapConfig에 지정되어 있다. -->
+	<resultMap id='addressMap' type='address'>
+		<result property='address' column='address'/>
+	</resultMap>
 </mapper>

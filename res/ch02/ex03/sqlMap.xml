@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
-<!-- namespace에 지정된 매퍼 객체와 관계를 맺는다. -->
+<!-- namespace에 지정된 mapper 객체와 관계를 맺는다. -->
 <mapper namespace='ch02.ex03.Map'>
 	<!-- relation이 없으므로 OR mapping도 없다. -->
+	<!-- 첫번째 방법이 가장 좋다. -->
 	<insert id='insertUser'>
 		insert into users values(
 			<!-- parameter가 2개 이상일 때는 parameter name을 신경써야 한다. -->
 			<!-- parameter type을 지정할 수 있다. -->
+			<!-- null이 들어올 경우에는 parameter type을 지정해야 한다. -->
 			#{userId, jdbcType=NUMERIC},
 			#{userName, jdbcType=VARCHAR},
 			#{regDate, jdbcType=DATE})

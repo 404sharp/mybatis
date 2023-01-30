@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<!-- namespace에 지정된 mapper 객체와 관계를 맺는다. -->
+<mapper namespace='ch05.ex06.Map'>
+	<select id='selectUsers' resultType='ch05.domain.User'>
+		<!-- 이 위치에 sql snippet을 복사 -->
+		<include refid='selectUser'>
+			<!-- parameter를 채운다. -->
+			<property name='tableName' value='users'/>
+		</include>
+		<where>
+			<if test='userIds != null'>
+				user_id in
+				<foreach item='userId' collection='userIds' open='(' separator=',' close=')'>
+					#{userId}
+				</foreach>
+			</if>
+			<if test='userNames != null'>
+				and user_name in
+				<foreach item='userName' collection='userNames' open='(' separator=',' close=')'>
+					#{userName}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+	<!-- sql snippet -->
+	<sql id='selectUser'>
+		select user_id userId, user_name userName, reg_date regDate
+		<!-- <sql>에서 parameter는 $ -->
+		from ${tableName}
+	</sql>
+</mapper>

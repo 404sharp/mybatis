@@ -10,6 +10,7 @@ public class User {
 	private int userId;
 	private String userName;
 	private LocalDate regDate;
+	// User "has an" address이므로 도메인이 등장한다. List가 아니라.
 	private Address address;
 	
 	@Override
