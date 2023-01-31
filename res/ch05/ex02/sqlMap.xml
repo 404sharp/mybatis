@@ -5,7 +5,9 @@
 <mapper namespace='ch05.ex02.Map'>
 	<select id='selectUser' resultMap='userMap'>
 		<!-- bind로 변수를 선언한다. -->
+		<!-- post.title이 있으므로 post는 null일 수 없다. -->
 		<bind name='title' value='"%" + post.title + "%"'/>
+		<!-- post.content가 있으므로 post는 null일 수 없다. -->
 		<bind name='content' value='"%" + post.content + "%"'/>
 		select users.user_id, user_name, reg_date, post_title, post_content
 		from users join posts

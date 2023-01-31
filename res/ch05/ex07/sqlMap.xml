@@ -7,20 +7,20 @@
 		<!-- 이 위치에 sql snippet을 복사 -->
 		<include refid='selectUser'/>
 		where user_id in
-			<!-- 그 배열 -->
-			<foreach item='userId' collection='array' open='(' separator=',' close=')'>
-				#{userId}
-			</foreach>
+		<!-- parameter name이 없으므로 "그 배열"을 칭한다. -->
+		<foreach item='userId' collection='array' open='(' separator=',' close=')'>
+			#{userId}
+		</foreach>
 	</select>
 	
 	<select id='selectUsers2' resultMap='userMap'>
 		<!-- 이 위치에 sql snippet을 복사 -->
 		<include refid='selectUser'/>
 		where user_name in
-			<!-- 그 list -->
-			<foreach item='userName' collection='list' open='(' separator=',' close=')'>
-				#{userName}
-			</foreach>
+		<!-- parameter name이 없으므로 "그 list"를 칭한다. -->
+		<foreach item='userName' collection='list' open='(' separator=',' close=')'>
+			#{userName}
+		</foreach>
 	</select>
 	
 	<resultMap id='userMap' type='ch05.domain.User'>
@@ -32,7 +32,6 @@
 	<!-- sql snippet -->
 	<sql id='selectUser'>
 		select user_id, user_name, reg_date
-		<!-- <sql>에서 parameter는 $ -->
 		from users
 	</sql>
 </mapper>

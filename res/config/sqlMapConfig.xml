@@ -5,6 +5,14 @@
 	<properties resource='config/jdbc.properties'>
 		<property name='driver' value='oracle.jdbc.driver.OracleDriver'/>
 	</properties>
+<!--
+	<properties resource='config/hr.properties'/>
+-->
+	
+	<settings>
+		<setting name='cacheEnabled' value='false'/>
+		<setting name='localCacheScope' value='STATEMENT'/>
+	</settings>
 	
 	<typeAliases>
 		<typeAlias type='ch02.domain.User' alias='user'/>
@@ -13,6 +21,7 @@
 		<package name='ch03.domain'/>
 	</typeAliases>
 	
+	<!-- environment는 id로 구분된다. id를 설정하지 않으면 default가 설정된다. -->
 	<environments default='development'>
 		<environment id='development'>
 			<transactionManager type='JDBC'/>
@@ -23,6 +32,15 @@
 				<!-- expression language (EL) -->
 				<property name='driver' value='${driver}'/>
 				<!-- jdbc.properties 파일에 정의된 속성을 가져온다. -->
+				<property name='url' value='${url}'/>
+				<property name='username' value='${username}'/>
+				<property name='password' value='${password}'/>
+			</dataSource>
+		</environment>
+		<environment id='hr'>
+			<transactionManager type='JDBC'/>
+			<dataSource type='POOLED'>
+				<property name='driver' value='${driver}'/>
 				<property name='url' value='${url}'/>
 				<property name='username' value='${username}'/>
 				<property name='password' value='${password}'/>
@@ -48,5 +66,12 @@
 		<mapper resource='ch05/ex05/sqlMap.xml'/>
 		<mapper resource='ch05/ex06/sqlMap.xml'/>
 		<mapper resource='ch05/ex07/sqlMap.xml'/>
+		<mapper resource='ch06/dao/map/employeeMap.xml'/>
+		<!-- resource file은 /, class는 .을 쓴다. -->
+		<mapper class='ch07.ex01.Map'/>
+		<mapper class='ch07.ex02.Map'/>
+		<mapper class='ch07.ex03.Map'/>
+		<mapper class='ch07.ex04.Map'/>
+		<mapper class='ch07.ex05.Map'/>
 	</mappers>
 </configuration>

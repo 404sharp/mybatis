@@ -19,6 +19,9 @@ public class Configuration {
 			// connection에는 최소한 session 하나가 있어야 한다.
 			// 그래야 sql 구문을 보내고 relation을 받을 수 있다.
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+//			InputStream stream = Resources.getResourceAsStream("config/sqlMapConfig.xml");
+			// hr environment를 사용한다.
+//			sqlSessionFactory = new SqlSessionFactoryBuilder().build(stream, "hr");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

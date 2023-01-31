@@ -7,6 +7,8 @@
 		select user_id userId, user_name userName, reg_date regDate
 		from users
 		<!-- parameter name이 없으므로 _parameter를 쓴다. -->
+		<!-- parameter가 한 개일 경우. -->
+		<!-- .equals()는 String 타입을 가정한 것이다. -->
 		<if test='_parameter != null and _parameter.equals("king")'>
 			where user_name = #{userName}
 		</if>
